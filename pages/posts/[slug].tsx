@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import client from '../../lib/contentful';
 
 export const getStaticPaths: unknown = async () => {
-	const res = await client.getEntries({ content_type: 'post' });
+	const res = await client.getEntries({ content_type: 'pageBlogPost' });
 	const paths = res.items.map((post) => ({
 		params: { slug: post.fields.slug },
 	}));

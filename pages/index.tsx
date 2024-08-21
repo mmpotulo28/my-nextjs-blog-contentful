@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 import client from '../lib/contentful';
 
 export const getStaticProps: GetStaticProps = async () => {
-	const res = await client.getEntries({ content_type: 'post' });
+	const res = await client.getEntries({ content_type: 'pageBlogPost' });
 	return {
 		props: {
 			posts: res.items,
