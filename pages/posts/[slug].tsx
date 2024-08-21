@@ -1,9 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import client from '../../lib/contentful';
-import { ParsedUrlQuery } from 'querystring';
 
-export const getStaticPaths: any = async () => {
-	const res = await client.getEntries({ content_type: 'blogPost' });
+export const getStaticPaths: unknown = async () => {
+	const res = await client.getEntries({ content_type: 'post' });
 	const paths = res.items.map((post) => ({
 		params: { slug: post.fields.slug },
 	}));
@@ -12,7 +11,7 @@ export const getStaticPaths: any = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const res = await client.getEntries({
-		content_type: 'blogPost',
+		content_type: 'post',
 		'fields.slug': params?.slug,
 	});
 	return {
